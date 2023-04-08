@@ -41,8 +41,8 @@ class HomeController extends Controller
             $users = User::whereHas('roles', function ($query) {
                 $query->where('roles.name', 'member');
             })->count();
-            $deposito = Deposito::where('status',1)->sum('amount');
-            $profit = Deposito::where('status',1)->sum('profit');
+            $deposito = Deposito::whereIn('status',[1,4])->sum('amount');
+            $profit = Deposito::whereIn('status',[1,4])->sum('profit');
             // $profit = Profit::where('status',1)->sum('profit');
             $withdraw = Withdrawal::where('status',1)->sum('amount');
             return view('home', compact('users','deposito','profit','withdraw'));
