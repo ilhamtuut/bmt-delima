@@ -22,7 +22,7 @@
 
 <!-- Main JS -->
 <script src="{{ asset('assets/js/main.js') }}?v={{ time() }}"></script>
-<script src="{{ asset('assets/js/blockUI.js') }}?v={{ time() }}"></script>
+<script src="{{ asset('assets/js/blockUi.js') }}?v={{ time() }}"></script>
 <script type="text/javascript">
     $('.submit').on('click',function () {
         $.blockUI({ message: null });
