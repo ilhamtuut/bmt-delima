@@ -56,7 +56,7 @@
                                 <td>{{ $value->name }}</td>
                                 <td>{{ $value->username }}</td>
                                 <td>{{ $value->email }}</td>
-                                <td>+62{{ $value->phone_number }}</td>
+                                <td>{{ $value->phone_number }}</td>
                                 <td>{{ $value->address }}</td>
                                 <td>{{ $value->ktp }}</td>
                                 <td>@if($value->bank_name) {{ $value->bank_name }} / {{ $value->bank_account_name }} / {{ $value->bank_account_number }} @endif</td>

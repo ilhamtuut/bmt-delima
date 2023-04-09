@@ -55,7 +55,7 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_num', 'min:6', 'max:10', 'unique:users,username'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone_number' => ['required', 'string', 'size:15'],
+            'phone_number' => ['required', 'string', 'max:15'],
             'address' => ['required', 'string', 'max:255'],
             'ktp' => ['required', 'string', 'size:16'],
             'foto_ktp' => ['required', new Base64Rule()],

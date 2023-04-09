@@ -11,8 +11,8 @@
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
             <div class="form-floating form-floating-outline mb-3">
-                <input type="text" class="form-control" id="email" name="email" value="{{ $email ?? old('email') }}" placeholder="Enter your email" autocomplete="email" autofocus />
-                <label for="email">Email</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" placeholder="Enter your username" autocomplete="username" autofocus />
+                <label for="username">Username</label>
             </div>
             <div class="mb-3 form-password-toggle">
                 <div class="input-group input-group-merge">
