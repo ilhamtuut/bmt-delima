@@ -11,9 +11,9 @@
         <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-floating form-floating-outline mb-3">
-                <input type="text" class="form-control" id="email" name="email"
-                    placeholder="Enter your email" autofocus />
-                <label for="email">Email</label>
+                <input type="text" class="form-control" id="username" name="username"
+                    placeholder="Enter your username" autofocus />
+                <label for="username">Username</label>
             </div>
             <div class="mb-3">
                 <div class="form-password-toggle">

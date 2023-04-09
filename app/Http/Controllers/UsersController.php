@@ -59,9 +59,9 @@ class UsersController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'alpha_dash', 'max:255', 'unique:users,username'],
+            'username' => ['required', 'alpha_num', 'min:6', 'max:10', 'unique:users,username'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone_number' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'size:15'],
             'address' => ['required', 'string', 'max:255'],
             'role' => ['required', 'string'],
             'bank_code' => ['nullable', 'string'],
@@ -109,16 +109,16 @@ class UsersController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'alpha_dash', 'max:255', 'unique:users,username,'.$id],
+            'username' => ['required', 'alpha_num', 'min:6', 'max:10', 'unique:users,username,'.$id],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
-            'phone_number' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'size:15'],
             'address' => ['required', 'string', 'max:255'],
             'role' => ['required', 'string'],
             'bank_code' => ['nullable', 'string'],
             'bank_name' => ['nullable', 'string'],
             'account_name' => ['nullable', 'string'],
             'account_number' => ['nullable', 'string'],
-            'ktp' => ['required', 'string', 'max:16'],
+            'ktp' => ['required', 'string', 'size:16'],
             'foto_ktp' => ['nullable', 'mimes:jpeg,png,jpg', 'max:2048'],
             'password' => ['nullable', 'string', 'min:8'],
         ]);
