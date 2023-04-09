@@ -7,7 +7,7 @@
         </div>
         <h4 class="mb-2 fw-semibold">Create your account 🚀</h4>
         <p class="mb-4">Make your account easy and fun!</p>
-
+        @include('layouts.partials.alert')
         <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-floating form-floating-outline mb-3">
