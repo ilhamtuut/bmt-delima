@@ -68,7 +68,7 @@ class UsersController extends Controller
             'bank_name' => ['nullable', 'string'],
             'account_name' => ['nullable', 'string'],
             'account_number' => ['nullable', 'string'],
-            'ktp' => ['required', 'string', 'max:16'],
+            'ktp' => ['required', 'string', 'size:16'],
             'foto_ktp' => ['required', 'mimes:jpeg,png,jpg', 'max:2048'],
             'password' => ['required', 'string', 'min:8'],
         ]);

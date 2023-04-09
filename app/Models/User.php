@@ -44,7 +44,9 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $hidden = [
         'password',
+        'session_id',
         'remember_token',
+        'email_verified_at'
     ];
 
     /**
@@ -82,15 +84,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return $code.$newID;
     }
 
-    protected $appends = ['link'];
+    protected $appends = ['link_ktp'];
 
-    public function getLinkAttribute()
+    public function getLinkKtpAttribute()
     {
-        $link = '';
         if(@$this->attributes['file_ktp']){
-            $link = asset('file/ktp/'.$this->attributes['file_ktp']);
+            return asset('file/ktp/'.$this->attributes['file_ktp']);
         }
-        return $link;
+    }
+
+    public function getPhoneNumberAttribute()
+    {
+        return '+62'.$this->attributes['phone_number'];
     }
 
     public function saldo()

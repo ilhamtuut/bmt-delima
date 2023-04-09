@@ -94,7 +94,12 @@ class DepositoController extends Controller
             'nominal' => 'required|numeric',
             'file' => ['required', 'mimes:jpeg,png,jpg', 'max:2048'],
         ]);
-        $deposito = Deposito::find($id);
+        $user = Auth::user();
+        $deposito = Deposito::where(['id'=>$id, 'user_id' => $user->id, 'status' => 0])->first();
+        if(!$deposito){
+            $request->session()->flash('success', 'Deposito tidak ditemukan.');
+            return redirect()->back();
+        }
         $deposito->update([
             'status' => 2
         ]);

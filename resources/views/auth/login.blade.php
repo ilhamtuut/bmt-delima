@@ -7,6 +7,7 @@
         </div>
         <h4 class="mb-2 fw-semibold">Welcome to {{ config('app.name') }}! 👋</h4>
         <p class="mb-4">Please sign-in to your account</p>
+        @include('layouts.partials.alert')
         <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-floating form-floating-outline mb-3">

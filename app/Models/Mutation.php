@@ -38,6 +38,7 @@ class Mutation extends Model
 
     public function reference()
     {
-        return $this->hasOne($this->attributes['journal_type'], 'reference_id','id');
+        // return $this->belongsTo(User::class, 'reference_id');
+        return $this->morphTo(__FUNCTION__,'reference_type','reference_id');
     }
 }

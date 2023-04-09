@@ -23,8 +23,9 @@ class Payment extends Model
 
     public function getLinkAttribute()
     {
-        $link = asset('file/payment/'.$this->attributes['proof_of_payment']);
-        return $link;
+        if(@$this->attributes['proof_of_payment']){
+            return asset('file/payment/'.$this->attributes['proof_of_payment']);
+        }
     }
 
     public function deposito()

@@ -83,7 +83,7 @@
                     <ul class="list-unstyled my-3 py-1">
                         <li class="d-flex align-items-center mb-3">
                             <i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-semibold mx-2">Contact:</span>
-                            <span>+62{{ Auth::user()->phone_number }}</span>
+                            <span>{{ Auth::user()->phone_number }}</span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
                             <i class="mdi mdi-email-outline mdi-24px"></i><span class="fw-semibold mx-2">Email:</span>

@@ -2,6 +2,15 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\{
+    AuthController,
+    UserController,
+    TransferController,
+    DepositoController,
+    WithdrawalController,
+    SettingController,
+    MutationController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +22,29 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/reset/password', [AuthController::class, 'sendResetPassword']);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    // Resend link to verify email 
+    Route::post('/email/verify/resend', [AuthController::class, 'resendEmailVerification'])->middleware(['throttle:6,1']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::get('/profile', [UserController::class, 'profile']);
+    Route::post('/update/password', [UserController::class, 'updatePassword']);
+    Route::post('/update/bank', [UserController::class, 'updateBank']);
+
+    // setting
+    Route::get('/bank', [SettingController::class, 'bank']);
+    Route::get('/bank/account', [SettingController::class, 'bank_account']);
+    Route::get('/deposito/type', [SettingController::class, 'deposito']);
+
+    Route::post('/deposito/send', [DepositoController::class, 'send']);
+    Route::post('/deposito/confirm/payment/{id}', [DepositoController::class, 'confirm_payment']);
+    Route::get('/deposito/history', [DepositoController::class, 'history']);
+    Route::post('/withdrawal/send', [WithdrawalController::class, 'send']);
+    Route::get('/withdrawal/history', [WithdrawalController::class, 'history']);
+    Route::post('/transfer/send', [TransferController::class, 'send']);
+    Route::post('/rekening/valid', [TransferController::class, 'valid_account']);
+    Route::get('/mutation', [MutationController::class, 'list']);
 });
