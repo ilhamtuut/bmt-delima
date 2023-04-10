@@ -8,10 +8,10 @@
                     <div class="d-flex align-items-end row">
                         <div class="col-md-6 order-2 order-md-1">
                             <div class="card-body">
-                                <h4 class="card-title pb-xl-2">Welcome <strong> {{ Auth::user()->name }}!</strong>🎉</h4>
+                                <h4 class="card-title pb-xl-2">Selamat Datang <strong> {{ Auth::user()->name }}!</strong>🎉</h4>
                                 <p>Investasikan dana kamu sekarang, untuk menghasilkan tambahan pemasukan Anda.</p>
                                 <a href="{{ route('deposito.index') }}" class="btn btn-primary waves-effect waves-light">
-                                    <i class="menu-icon tf-icons mdi mdi-credit-card-outline"></i> Deposito Now</a>
+                                    <i class="menu-icon tf-icons mdi mdi-credit-card-outline"></i> Deposito Sekarang</a>
                             </div>
                         </div>
                         <div class="col-md-6 text-center text-md-end order-1 order-md-2">
@@ -72,7 +72,7 @@
                 <div class="card h-100">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <h4 class="mb-2">Overview</h4>
+                            <h4 class="mb-2">Ringkasan</h4>
                         </div>
                     </div>
                     <div class="card-body d-flex justify-content-between flex-wrap gap-3">
@@ -122,7 +122,7 @@
                 <div class="card h-100">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <h4 class="mb-2">Overview</h4>
+                            <h4 class="mb-2">Ringkasan</h4>
                         </div>
                     </div>
                     <div class="card-body d-flex justify-content-between flex-wrap gap-4">

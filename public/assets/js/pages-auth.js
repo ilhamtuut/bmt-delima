@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
           'password_confirmation': {
             validators: {
               notEmpty: {
-                message: 'Mohon masukan confirm password'
+                message: 'Mohon masukan konfirmasi password'
               },
               identical: {
                 compare: function () {
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
           terms: {
             validators: {
               notEmpty: {
-                message: 'Please agree terms & conditions'
+                message: 'Harap setujui syarat & ketentuan'
               }
             }
           }

@@ -3,7 +3,7 @@
 
 @endsection
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Deposito</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Beranda /</span> Deposito</h4>
 @endsection
 
 @section('content')
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2">Daftar</button>
                     </div>
                 </form>
             </div>

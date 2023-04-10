@@ -26,7 +26,7 @@
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                         data-bs-toggle="dropdown">
                         <div class="avatar avatar-online">
-                            <img src="{{ asset('assets/img/avatars/1.png') }}" alt
+                            <img src="{{ Auth::user()->foto_profile_link }}" alt
                                 class="w-px-40 h-auto rounded-circle" />
                         </div>
                     </a>
@@ -36,7 +36,7 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar avatar-online">
-                                            <img src="{{ asset('assets/img/avatars/1.png') }}" alt
+                                            <img src="{{ Auth::user()->foto_profile_link }}" alt
                                                 class="w-px-40 h-auto rounded-circle" />
                                         </div>
                                     </div>
@@ -53,13 +53,13 @@
                         <li>
                             <a class="dropdown-item" href="{{ route('profile.index') }}">
                                 <i class="mdi mdi-account-outline me-2"></i>
-                                <span class="align-middle">My Profile</span>
+                                <span class="align-middle">Profil Saya</span>
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('profile.settings') }}">
                                 <i class="mdi mdi-cog-outline me-2"></i>
-                                <span class="align-middle">Settings</span>
+                                <span class="align-middle">Pengaturan</span>
                             </a>
                         </li>
                         <li>
@@ -68,7 +68,7 @@
                         <li>
                             <a class="dropdown-item" href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="mdi mdi-logout me-2"></i>
-                                <span class="align-middle">Log Out</span>
+                                <span class="align-middle">Keluar</span>
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf

@@ -42,8 +42,11 @@
                                                 <input name="deposito" class="form-check-input" type="radio"
                                                     value="{{ $value->id }}" id="deposito-{{ $value->id }}"
                                                     {{ $key == 0 ? 'checked' : '' }} data-percent="{{ $value->percent }}">
+                                                <span class="custom-option-header">
+                                                    <span class="h6 mb-0">{{ $value->name }}</span>
+                                                </span>
                                                 <span class="custom-option-body">
-                                                    <small>{{ $value->name }}</small>
+                                                    <small class="text-primary">Minimal Rp{{ number_format($value->minimal,0,',','.') }}</small>
                                                 </span>
                                             </label>
                                         </div>
@@ -65,7 +68,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2">Daftar</button>
                     </div>
                 </form>
             </div>

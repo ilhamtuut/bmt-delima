@@ -3,13 +3,13 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-account-settings.css') }}?v={{ time() }}" />
 @endsection
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Users /</span> Create User</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Users /</span> Buat Akun</h4>
 @endsection
 
 @section('content')
     <div class="col-md-12">
         <div class="card mb-4">
-            <h4 class="card-header">Create User</h4>
+            <h4 class="card-header">Buat Akun</h4>
             <!-- Account -->
             <div class="card-body">
                 @include('layouts.partials.alert')
@@ -55,13 +55,13 @@
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline">
                                 <input type="text" class="form-control" id="address" name="address" />
-                                <label for="address">Address</label>
+                                <label for="address">Alamat</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline">
                                 <select id="bank_name" name="bank_name" class="select2 form-select">
-                                    <option value="">Select Bank</option>
+                                    <option value="">Pilih Bank</option>
                                     @foreach ($banks as $value)
                                         <option value="{{ $value->name }}" data-code="{{ $value->code }}">{{ $value->name }}</option>
                                     @endforeach
@@ -85,7 +85,7 @@
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline">
                                 <select id="role" name="role" class="select2 form-select">
-                                    <option value="">Select</option>
+                                    <option value="">Pilih Role</option>
                                     @foreach ($roles as $role)
                                         <option value="{{$role->id}}">{{$role->display_name}}</option>
                                     @endforeach
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2">Buat Akun</button>
                     </div>
                 </form>
             </div>

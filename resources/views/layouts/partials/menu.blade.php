@@ -5,7 +5,7 @@
             <li class="menu-item {{ isset($page) && $page == 'home' ? 'active' : '' }}">
                 <a href="{{ route('home') }}" class="menu-link">
                     <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
-                    <div data-i18n="Dashboard">Dashboard</div>
+                    <div data-i18n="Beranda">Beranda</div>
                 </a>
             </li>
             @role(['member'])
@@ -46,7 +46,7 @@
                     <li class="menu-item {{ isset($active) && $active == 'add-user' ? 'active' : '' }}">
                         <a href="{{ route('users.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-                            <div data-i18n="Create Users">Create User</div>
+                            <div data-i18n="Buat Akun">Buat Akun</div>
                         </a>
                     </li>
                     @foreach (App\Models\Role::all() as $role)
@@ -73,7 +73,7 @@
             <li class="menu-item {{ isset($page) && $page == 'settings' ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
-                    <div data-i18n="Settings">Settings</div>
+                    <div data-i18n="Pengaturan">Pengaturan</div>
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item {{ isset($active) && $active == 'sbank' ? 'active' : '' }}">
@@ -97,7 +97,7 @@
                     <li class="menu-item {{ isset($active) && $active == 'swithdrawal' ? 'active' : '' }}">
                         <a href="{{ route('setting.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-currency-usd"></i>
-                            <div data-i18n="Withdrawal">Withdrawal</div>
+                            <div data-i18n="Penarikan">Penarikan</div>
                         </a>
                     </li>
                 </ul>

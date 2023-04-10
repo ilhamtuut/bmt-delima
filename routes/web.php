@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth','verified','block-user']], function() {
         Route::get('/', [ProfileController::class, 'index'])->name('index');
         Route::get('/settings', [ProfileController::class, 'settings'])->name('settings');
         Route::post('/password', [ProfileController::class, 'updatePassword'])->name('password');
+        Route::post('/uploadFoto', [ProfileController::class, 'uploadFoto'])->name('uploadFoto');
         Route::get('/settings/bank', [ProfileController::class, 'bank'])->name('bank');
         Route::post('/settings/bank', [ProfileController::class, 'updateBank'])->name('updateBank');
     });

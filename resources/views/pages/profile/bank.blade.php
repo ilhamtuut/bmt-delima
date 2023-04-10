@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-account-settings.css') }}?v={{ time() }}" />
 @endsection
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> Bank Account</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pengaturan akun /</span> Akun Bank</h4>
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-md-12">
             @include('layouts.partials.alert')
             <div class="card mb-4">
-                <h5 class="card-header">Add Bank Account</h5>
+                <h5 class="card-header">Tambah Akun Bank</h5>
                 <div class="card-body">
                     <form id="formAccountSettings" method="POST" action="{{ route('profile.updateBank') }}" class="fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
                         @csrf
@@ -20,7 +20,7 @@
                             <div class="mb-4 col-md-6 fv-plugins-icon-container">
                                 <div class="form-floating form-floating-outline">
                                     <select id="bank_name" name="bank_name" class="select2 form-select">
-                                      <option value="">Select Bank</option>
+                                      <option value="">Pilih Bank</option>
                                       @foreach ($banks as $value)
                                         <option value="{{ $value->name }}" data-code="{{ $value->code }}">{{ $value->name }}</option>
                                       @endforeach
@@ -46,8 +46,7 @@
                             </div>
                         </div>
                         <div class="mt-2">
-                            <button type="submit" class="btn btn-primary me-2 waves-effect waves-light">Save
-                                changes</button>
+                            <button type="submit" class="btn btn-primary me-2 waves-effect waves-light">Simpan</button>
                         </div>
                     </form>
                 </div>

@@ -61,6 +61,9 @@ class ProfileController extends Controller
     
     public function bank(Request $request)
     {
+        if(Auth::user()->bank_account_name){
+            return redirect()->route('profile.index');
+        }
         $banks = Bank::get();
         return view('pages.profile.bank',compact('banks'));
     }
@@ -84,6 +87,29 @@ class ProfileController extends Controller
         $users->save();
 
         $request->session()->flash('success', 'Berhasil menambahkan akun bank');
+        return redirect()->route('profile.index');
+    }
+
+    public function uploadFoto(Request $request)
+    {
+        $this->validate($request, [
+            'foto' => ['required', 'mimes:jpeg,png,jpg', 'max:2048'],
+        ]);
+
+        $file = $request->file('foto');
+        $filename = uniqid().'.'.$file->getClientOriginalExtension();
+        $file->move('file/profile/',$filename);
+
+        $users = Auth::user();
+        if($users->foto_profile){
+            unlink('file/profile/'.$users->foto_profile);
+        }
+        $users->fill([
+            'foto_profile' => $filename,
+        ]);
+        $users->save();
+
+        $request->session()->flash('success', 'Berhasil mengubah foto profil');
         return redirect()->route('profile.index');
     }
 }

@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 @endsection
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Transfer Dana</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Beranda /</span> Transfer Dana</h4>
 @endsection
 
 @section('content')
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2">Transfer</button>
                     </div>
                 </form>
             </div>

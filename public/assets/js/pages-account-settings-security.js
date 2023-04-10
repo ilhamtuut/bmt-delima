@@ -16,39 +16,39 @@ document.addEventListener('DOMContentLoaded', function (e) {
           current_password: {
             validators: {
               notEmpty: {
-                message: 'Please current password'
+                message: 'Masukan password saat ini'
               },
               stringLength: {
                 min: 8,
-                message: 'Password must be more than 8 characters'
+                message: 'Kata sandi harus lebih dari 8 karakter'
               }
             }
           },
           new_password: {
             validators: {
               notEmpty: {
-                message: 'Please enter new password'
+                message: 'Masukan password baru'
               },
               stringLength: {
                 min: 8,
-                message: 'Password must be more than 8 characters'
+                message: 'Kata sandi harus lebih dari 8 karakter'
               }
             }
           },
           confirm_password: {
             validators: {
               notEmpty: {
-                message: 'Please confirm new password'
+                message: 'Masukan konfirmasi password baru'
               },
               identical: {
                 compare: function () {
                   return formChangePass.querySelector('[name="new_password"]').value;
                 },
-                message: 'The password and its confirm are not the same'
+                message: 'Password dan konfirmasinya tidak sama'
               },
               stringLength: {
                 min: 8,
-                message: 'Password must be more than 8 characters'
+                message: 'Kata sandi harus lebih dari 8 karakter'
               }
             }
           }

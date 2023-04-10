@@ -2,7 +2,7 @@
 @section('css')
 @endsection
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Saldo</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Beranda /</span> Saldo</h4>
 @endsection
 
 @section('content')

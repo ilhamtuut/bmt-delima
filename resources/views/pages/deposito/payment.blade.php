@@ -60,15 +60,15 @@
                         </div>
                         <div class="col-12">
                             <div class="form-floating form-floating-outline">
-                                <input class="form-control" type="file" name="file" id="file" />
+                                <input class="form-control" type="file" name="file" id="file" accept="image/png, image/gif, image/jpeg" />
                                 <label for="file">Bukti Pembayaran</label>
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+                            <button type="submit" class="btn btn-primary me-sm-3 me-1">Kirim</button>
                             <button type="reset" class="btn btn-outline-secondary btn-reset" data-bs-dismiss="modal"
                                 aria-label="Close">
-                                Cancel
+                                Keluar
                             </button>
                         </div>
                     </form>

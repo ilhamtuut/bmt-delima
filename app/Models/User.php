@@ -32,6 +32,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'bank_name',
         'bank_account_name',
         'bank_account_number',
+        'foto_profile',
         'status',
         'session_id',
         'password',
@@ -84,13 +85,21 @@ class User extends Authenticatable implements MustVerifyEmail
         return $code.$newID;
     }
 
-    protected $appends = ['link_ktp'];
+    protected $appends = ['link_ktp','foto_profile_link'];
 
     public function getLinkKtpAttribute()
     {
         if(@$this->attributes['file_ktp']){
             return asset('file/ktp/'.$this->attributes['file_ktp']);
         }
+    }
+
+    public function getFotoProfileLinkAttribute()
+    {
+        if(@$this->attributes['foto_profile']){
+            return asset('file/profile/'.$this->attributes['foto_profile']);
+        }
+        return asset('assets/img/avatars/1.png');
     }
 
     public function getPhoneNumberAttribute()

@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 @endsection
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Penarikan</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Beranda /</span> Penarikan</h4>
 @endsection
 
 @section('content')

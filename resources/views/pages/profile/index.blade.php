@@ -3,20 +3,28 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-profile.css') }}?v={{ time() }}" />
 @endsection
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">User Profile /</span> Profile</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Beranda /</span> Profil Saya</h4>
 @endsection
 
 @section('content')
     <div class="row">
+        <div class="col-12">
+            @include('layouts.partials.alert')
+        </div>
         <div class="col-12">
             <div class="card mb-4">
                 <div class="user-profile-header-banner">
                     <img src="{{ asset('assets/img/pages/profile-banner.png') }}" alt="Banner image" class="rounded-top">
                 </div>
                 <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
-                    <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-                        <img src="{{ asset('assets/img/avatars/1.png') }}" alt="user image"
-                            class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+                    <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto text-center">
+                        <img src="{{ Auth::user()->foto_profile_link }}" alt="user image"
+                        class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+                        <span class="d-block h-auto ms-0 ms-sm-4 mt-1 badge bg-primary cursor-pointer" id="btn-upload">Upload foto</span>
+                        <form id="upload-profile" action="{{ route('profile.uploadFoto') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input name="foto" type="file" class="form-control d-none" accept="image/png, image/gif, image/jpeg" id="foto_profile" name="foto_profile" />
+                        </form>
                     </div>
                     <div class="flex-grow-1 mt-3 mt-sm-5">
                         <div
@@ -27,7 +35,7 @@
                                     class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
                                     <li class="list-inline-item">
                                         <i class="mdi mdi-calendar-blank-outline me-1 mdi-20px"></i><span
-                                            class="fw-semibold"> Joined
+                                            class="fw-semibold"> Bergabung
                                             {{ date('d F Y', strtotime(Auth::user()->created_at)) }}</span>
                                     </li>
                                 </ul>
@@ -37,14 +45,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            @include('layouts.partials.alert')
-        </div>
         <div class="col-xl-6 col-lg-6 col-md-6">
             <!-- About User -->
             <div class="card mb-4">
                 <div class="card-body">
-                    <small class="card-text text-uppercase text-muted">About</small>
+                    <small class="card-text text-uppercase text-muted">Tentang</small>
                     <ul class="list-unstyled my-3 py-1">
                         <li class="d-flex align-items-center mb-3">
                             <i class="mdi mdi-link mdi-24px"></i><span class="fw-semibold mx-2">Rekening:</span>
@@ -79,10 +84,10 @@
             <!-- About User -->
             <div class="card mb-4">
                 <div class="card-body">
-                    <small class="card-text text-uppercase text-muted">Contacts</small>
+                    <small class="card-text text-uppercase text-muted">Kontak</small>
                     <ul class="list-unstyled my-3 py-1">
                         <li class="d-flex align-items-center mb-3">
-                            <i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-semibold mx-2">Contact:</span>
+                            <i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-semibold mx-2">No Telp:</span>
                             <span>{{ Auth::user()->phone_number }}</span>
                         </li>
                         <li class="d-flex align-items-center mb-3">
@@ -116,4 +121,16 @@
             <!--/ About User -->
         </div>
     </div>
+@endsection
+
+@section('customjs')
+    <script>
+        $('#btn-upload').click(function(e){
+            $('#foto_profile').click();
+        });
+
+        $('#foto_profile').change(function(e){
+            $('#upload-profile').submit();
+        });
+    </script>
 @endsection

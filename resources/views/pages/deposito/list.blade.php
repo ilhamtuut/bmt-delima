@@ -156,7 +156,7 @@
                     <div class="col-12 text-end">
                         <button type="reset" class="btn btn-outline-secondary btn-reset" data-bs-dismiss="modal"
                             aria-label="Close">
-                            Cancel
+                            Keluar
                         </button>
                     </div>
                 </div>

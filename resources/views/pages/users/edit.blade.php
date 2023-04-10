@@ -55,13 +55,13 @@
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline">
                                 <input type="text" class="form-control" id="address" value="{{ $user->address }}" name="address" />
-                                <label for="address">Address</label>
+                                <label for="address">Alamat</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline">
                                 <select id="bank_name" name="bank_name" class="select2 form-select">
-                                    <option value="">Select Bank</option>
+                                    <option value="">Pilih Bank</option>
                                     @foreach ($banks as $item)
                                         <option value="{{ $item->name }}" @if ($item->name == $user->bank_name)
                                             selected
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2">Update Akun</button>
                     </div>
                 </form>
             </div>

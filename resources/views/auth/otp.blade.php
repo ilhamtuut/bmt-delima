@@ -5,12 +5,12 @@
         <div class="text-center mb-2">
             <img style="height:150px;" src="{{ asset('assets/img/logo/delima.png') }}" alt="logo">
         </div>
-        <h4 class="mb-2 fw-semibold">Two Step Verification 💬</h4>
+        <h4 class="mb-2 fw-semibold">Verifikasi Dua Langkah 💬</h4>
         <p class="text-start mb-4">
-            We sent a verification code to your mobile. Enter the code from the mobile in the field below.
+            Kami mengirimkan kode verifikasi ke ponsel Anda. Masukkan kode dari ponsel di kolom di bawah ini.
             <span class="fw-bold d-block mt-2">******1234</span>
         </p>
-        <p class="mb-0 fw-semibold">Type your 6 digit security code</p>
+        <p class="mb-0 fw-semibold">Ketik kode keamanan 6 digit Anda</p>
         <form id="twoStepsForm" action="index.html" method="POST">
             <div class="mb-3">
                 <div class="auth-input-wrapper d-flex align-items-center justify-content-sm-between numeral-mask-wrapper">
@@ -36,10 +36,10 @@
                 <!-- Create a hidden field which is combined by 3 fields above -->
                 <input type="hidden" name="otp" />
             </div>
-            <button class="btn btn-primary d-grid w-100 mb-3 submit">Verify my account</button>
+            <button class="btn btn-primary d-grid w-100 mb-3 submit">Verifikasi akun saya</button>
             <div class="text-center">
-                Didn't get the code?
-                <a href="javascript:void(0);" class="submit"> Resend </a>
+                Tidak mendapatkan kodenya?
+                <a href="javascript:void(0);" class="submit"> Kirim ulang </a>
             </div>
         </form>
     </div>

@@ -2,7 +2,7 @@
 @section('css')
 @endsection
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Mutasi</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Beranda /</span> Mutasi</h4>
 @endsection
 
 @section('content')

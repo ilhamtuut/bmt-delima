@@ -2,7 +2,7 @@
 @section('css')
 @endsection
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Settings /</span> Bank</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Pengaturan /</span> Bank</h4>
 @endsection
 
 @section('content')
@@ -71,10 +71,10 @@
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+                            <button type="submit" class="btn btn-primary me-sm-3 me-1">Simpan</button>
                             <button type="reset" class="btn btn-outline-secondary btn-reset" data-bs-dismiss="modal"
                                 aria-label="Close">
-                                Cancel
+                                Keluar
                             </button>
                         </div>
                     </form>
