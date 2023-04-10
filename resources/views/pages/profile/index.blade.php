@@ -21,7 +21,7 @@
                         <img src="{{ Auth::user()->foto_profile_link }}" alt="user image"
                         class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
                         <span class="d-block h-auto ms-0 ms-sm-4 mt-1 badge bg-primary cursor-pointer" id="btn-upload">Upload foto</span>
-                        <form id="upload-profile" action="{{ route('profile.uploadFoto') }}" method="POST" enctype="multipart/form-data">
+                        <form id="upload-profile" action="{{ route('profile.upload.foto') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input name="foto" type="file" class="form-control d-none" accept="image/png, image/gif, image/jpeg" id="foto_profile" name="foto_profile" />
                         </form>
