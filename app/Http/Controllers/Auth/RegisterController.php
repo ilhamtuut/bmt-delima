@@ -74,12 +74,14 @@ class RegisterController extends Controller
         $file = $data['foto_ktp'];
         $filename = uniqid().'.'.$file->getClientOriginalExtension();
         $file->move('file/ktp/',$filename);
-
+        $phone_number = $data['phone_number'];
+        $phone_number = preg_replace('/[62 | +62]/','',$phone_number);
+        $phone_number = ltrim($phone_number, '0');
         $user = User::create([
             'name' => $data['name'],
             'username' => strtolower($data['username']),
             'email' => $data['email'],
-            'phone_number' => $data['phone_number'],
+            'phone_number' => $phone_number,
             'address' => $data['address'],
             'ktp' => $data['ktp'],
             'file_ktp' => $filename,
