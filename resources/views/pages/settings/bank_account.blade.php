@@ -89,7 +89,7 @@
                         </div>
                         <div class="col-12">
                             <div class="form-floating form-floating-outline">
-                                <input class="form-control numbering" type="text" name="bank_account_number"
+                                <input class="form-control" type="text" name="bank_account_number"
                                     id="bank_account_number" />
                                 <label for="bank_account_number">Nomor Rekening Bank</label>
                             </div>
