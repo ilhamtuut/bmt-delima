@@ -11,6 +11,12 @@
         <form id="formAuthentication" class="mb-3" action="{{ route('register') }}" method="POST"
             enctype="multipart/form-data">
             @csrf
+            @if (Session::get('referral'))
+                <div class="form-floating form-floating-outline mb-3">
+                    <input type="text" class="form-control" id="referral" value="{{ Session::get('referral') }}" name="referral" readonly />
+                    <label for="referral">Kode Affiliasi</label>
+                </div>
+            @endif
             <div class="form-floating form-floating-outline mb-3">
                 <input type="text" class="form-control" id="name" name="name" placeholder="Masukan nama lengkap"
                     autofocus />

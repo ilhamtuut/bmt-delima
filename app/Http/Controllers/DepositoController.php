@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Payment;
 use App\Models\Mutation;
 use App\Models\Deposito;
+use App\Models\Affiliate;
 use App\Models\BankDeposit;
 use App\Models\DepositoType;
 use Illuminate\Http\Request;
@@ -153,6 +154,7 @@ class DepositoController extends Controller
                 'reference_type' => Deposito::class,
                 'status' => 1
             ]);
+            $this->affiliasi($deposito->id,$deposito->user_id,$deposito->amount);
         }
 
         $request->session()->flash('success', 'Berhasil '.$text.' pembayaran deposito.');
@@ -284,5 +286,76 @@ class DepositoController extends Controller
             ->whereDate('created_at','<=',$to)
             ->sum('profit');
         return view('pages.deposito.list', compact('history','total','profit'))->with('i', (request()->input('page', 1) - 1) * 20);
+    }
+
+    public function affiliasi($deposito_id,$user_id,$amount)
+    {
+        $bonus = $amount * 0.01;
+        $user = User::where('id',$user_id)->whereNotNull('parent_id')->first();
+        if($user){
+            $parent_id = $user->parent_id;
+            $affiliate = Affiliate::create([
+                'deposito_id' => $deposito_id,
+                'user_id' => $parent_id,
+                'from_id' => $user_id,
+                'amount' => $amount,
+                'percent' => 0.01,
+                'bonus' => $bonus,
+            ]);
+
+            Mutation::create([
+                'trxid' => $affiliate->trxid,
+                'user_id' => $affiliate->user_id,
+                'note' => 'Komisi Affiliasi dari '.strtoupper($user->name),
+                'amount' => $affiliate->bonus,
+                'debit' => $affiliate->bonus,
+                'kredit' => 0,
+                'reference_id' => $affiliate->id,
+                'reference_type' => Affiliate::class,
+                'status' => 1
+            ]);
+        }
+        return true;
+    }
+
+    public function list_affilate(Request $request)
+    {
+
+        $search = $request->search;
+        $from_date = str_replace('/', '-', $request->from_date);
+        $to_date = str_replace('/', '-', $request->to_date);
+        if($from_date && $to_date){
+            $from = date('Y-m-d',strtotime($from_date));
+            $to = date('Y-m-d',strtotime($to_date));
+        }else{
+            $from = date('Y-m-d',strtotime('01/01/2018'));
+            $to = date('Y-m-d');
+            $from_date = '01/01/2018';
+            $to_date = date('d/m/Y');
+        }
+
+        $history = Affiliate::when($search, function ($query) use ($search){
+                $query->whereHas('user', function ($cari) use ($search){
+                    $cari->where('users.username', 'LIKE', $search.'%')
+                        ->orWhere('users.name', 'LIKE', $search.'%')
+                        ->orWhere('users.account_number', 'LIKE', $search.'%');
+                });
+            })
+            ->whereDate('created_at','>=',$from)
+            ->whereDate('created_at','<=',$to)
+            ->orderBy('id','desc')
+            ->paginate(20);
+
+        $total = Affiliate::when($search, function ($query) use ($search){
+                $query->whereHas('user', function ($cari) use ($search){
+                    $cari->where('users.username', 'LIKE', $search.'%')
+                        ->orWhere('users.name', 'LIKE', $search.'%')
+                        ->orWhere('users.account_number', 'LIKE', $search.'%');
+                });
+            })
+            ->whereDate('created_at','>=',$from)
+            ->whereDate('created_at','<=',$to)
+            ->sum('bonus');
+        return view('pages.deposito.affilate', compact('history','total'))->with('i', (request()->input('page', 1) - 1) * 20);
     }
 }

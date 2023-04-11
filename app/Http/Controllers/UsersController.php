@@ -95,7 +95,7 @@ class UsersController extends Controller
             'email_verified_at' => now()
         ]);
         $user->roles()->attach($request->role);
-        $request->session()->flash('success', 'Successfully, create user');
+        $request->session()->flash('success', 'Berhasil menambahkan user');
         return redirect()->back();
     }
 
@@ -158,7 +158,7 @@ class UsersController extends Controller
         $user->update($dataUpdate);
 
         $user->roles()->sync($request->role);
-        $request->session()->flash('success', 'Successfully updated user '.$user->username);
+        $request->session()->flash('success', 'Berhasil memperbaharui user '.$user->username);
         return redirect()->to('users/list/'.$request->session()->get('roles'));
     }
 
@@ -168,15 +168,66 @@ class UsersController extends Controller
         $status = $user->status;
         if($status == 2){
             $block = 1;
-            $msg = 'Activated username '.$user->username;
+            $msg = 'mengaktifkan username '.$user->username;
         }else{
             $block = 2;
-            $msg = 'Suspended username '.$user->username;
+            $msg = 'menonaktikan username '.$user->username;
         }
         $user->status = $block;
         $user->save();
 
-        $request->session()->flash('success', 'Successfully, '.$msg);
+        $request->session()->flash('success', 'Berhasil '.$msg);
+        return redirect()->back();
+    }
+
+    public function referral(Request $request)
+    {
+        $search = $request->search;
+        $status = $request->status;
+        $data = User::whereHas('roles', function ($query) {
+                    $query->where('roles.name', 'member');
+                })
+                ->whereNotNull('email_verified_at')
+                ->when($search, function ($cari) use ($search) {
+                    return $cari->where('username', 'LIKE' ,$search.'%')
+                    ->orWhere('account_number', 'LIKE', $search.'%')
+                    ->orWhere('name', 'LIKE', $search.'%')
+                    ->orWhere('email', 'LIKE', $search.'%');
+                })
+                ->when($status, function ($cari) use ($status) {
+                    if($status == 2){
+                        $status = 0;
+                    }
+                    return $cari->where('is_referral', $status);
+                })->paginate(20);
+        return view('pages.users.referral', compact('data'))->with('i', (request()->input('page', 1) - 1) * 20);
+    }
+
+    public function list_referral(Request $request,$id)
+    {
+        $user = User::find($id);
+        $data = User::where('parent_id',$id)
+                ->whereNotNull('email_verified_at')
+                ->paginate(20);
+        return view('pages.users.list_referral', compact('data','user'))->with('i', (request()->input('page', 1) - 1) * 20);
+    }
+
+    public function set_referral(Request $request, $type, $id)
+    {
+        $is_referral = 0;
+        $referral_code = NULL;
+        $text = 'menonaktifkan affiliasi';
+        if($type == 'active'){
+            $referral_code = \Str::random(16);
+            $is_referral = 1;
+            $text = 'mengaktifkan affiliasi';
+        }
+        $user = User::find($id);
+        $user->update([
+            'referral_code'=>$referral_code,
+            'is_referral'=> $is_referral
+        ]);
+        $request->session()->flash('success', 'Berhasil '.$text);
         return redirect()->back();
     }
 }

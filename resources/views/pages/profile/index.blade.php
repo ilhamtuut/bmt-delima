@@ -76,6 +76,19 @@
                             <span>{{ Auth::user()->address }}</span>
                         </li>
                     </ul>
+                    @if (Auth::user()->referral_code)
+                        <small class="card-text text-uppercase text-muted">Affiliasi</small>
+                        <ul class="list-unstyled my-3 py-1">
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="mdi mdi-link mdi-24px"></i><span class="fw-semibold mx-2">Kode Affiliasi:</span>
+                                <span>{{ Auth::user()->referral_code }}</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="mdi mdi-share-all-outline mdi-24px"></i><span class="fw-semibold mx-2">Link Affiliasi:</span>
+                                <span>{{ url('/referral/' . Auth::user()->referral_code) }}</span>
+                            </li>
+                        </ul>
+                    @endif
                 </div>
             </div>
             <!--/ About User -->

@@ -66,6 +66,12 @@
                             </li>
                         @endif
                     @endforeach
+                    <li class="menu-item {{ isset($active) && $active == 'referral' ? 'active' : '' }}">
+                        <a href="{{ route('users.referral') }}" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-share-all-outline"></i>
+                            <div data-i18n="Affiliasi">Affiliasi</div>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -121,6 +127,13 @@
                         <a href="{{ route('deposito.list') }}" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-google-circles-extended"></i>
                             <div data-i18n="List Deposito">List Deposito</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ isset($active) && $active == 'komisi' ? 'active' : '' }}">
+                        <a href="{{ route('deposito.list_affilate') }}" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-share-all-outline"></i>
+                            <div data-i18n="Komisi Affiliasi">Komisi Affiliasi</div>
                         </a>
                     </li>
                 </ul>

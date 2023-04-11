@@ -17,8 +17,8 @@
                         <div class="col-lg-2">
                             <select type="text" name="status" class="form-control form-select">
                                 <option value="">Pilih</option>
-                                <option @if(request()->status == 1) selected @endif value="1">Active</option>
-                                <option @if(request()->status == 2) selected @endif value="2">Suspend</option>
+                                <option @if(request()->status == 1) selected @endif value="1">Aktif</option>
+                                <option @if(request()->status == 2) selected @endif value="2">Nonaktif</option>
                             </select>
                         </div>
                         <div class="col-lg-4">
@@ -62,9 +62,9 @@
                                 <td>@if($value->bank_name) {{ $value->bank_name }} / {{ $value->bank_account_name }} / {{ $value->bank_account_number }} @endif</td>
                                 <td>
                                     @if ($value->status == 1)
-                                        <span class="badge bg-label-success me-1">Active</span>
+                                        <span class="badge bg-label-success me-1">Aktif</span>
                                     @else
-                                        <span class="badge bg-label-danger me-1">Suspend</span>
+                                        <span class="badge bg-label-danger me-1">Nonaktif</span>
                                     @endif
                                 </td>
                                 <td>{{ $value->created_at }}</td>

@@ -33,6 +33,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'bank_account_name',
         'bank_account_number',
         'foto_profile',
+        'parent_id',
+        'is_referral',
+        'referral_code',
         'status',
         'session_id',
         'password',
@@ -105,6 +108,21 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getPhoneNumberAttribute()
     {
         return '+62'.$this->attributes['phone_number'];
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(User::class, 'parent_id');
+    }
+
+    public function childs()
+    {
+        return $this->hasMany(User::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(User::class, 'parent_id')->with('children');
     }
 
     public function saldo()

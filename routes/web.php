@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::get('/verification/otp', function () {
     return view('auth.otp');
 });
-
+Route::get('/referral/{code}', [App\Http\Controllers\Auth\RegisterController::class, 'referal'])->name('referal');
 Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth','verified','block-user']], function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth','verified','block-user']], function() {
             Route::get('/add', [DepositoController::class, 'add'])->name('add');
             Route::post('/create', [DepositoController::class, 'create'])->name('create');
             Route::get('/list', [DepositoController::class, 'list'])->name('list');
+            Route::get('/list/komisi', [DepositoController::class, 'list_affilate'])->name('list_affilate');
             Route::get('/action/{type}/{id}', [DepositoController::class, 'action_deposito'])->name('action_deposito');
         });
     });
@@ -83,6 +84,9 @@ Route::group(['middleware' => ['auth','verified','block-user']], function() {
         Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('edit');
         Route::get('/block/{id}', [UsersController::class, 'block'])->name('block');
         Route::post('/update/{id}', [UsersController::class, 'update'])->name('update');
+        Route::get('/affiliasi', [UsersController::class, 'referral'])->name('referral');
+        Route::get('/affiliasi/{id}', [UsersController::class, 'list_referral'])->name('list_referral');
+        Route::get('/settings/affiliasi/{type}/{id}', [UsersController::class, 'set_referral'])->name('set.referral');
     });
 
     Route::group(['prefix' => 'setting', 'as' => 'setting.','middleware'=>'permission:administrator'], function() {
