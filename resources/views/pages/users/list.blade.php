@@ -42,6 +42,7 @@
                             <th>No Telp</th>
                             <th>Alamat</th>
                             <th>No Ktp</th>
+                            <th>Foto Ktp</th>
                             <th>Akun Bank</th>
                             <th>Status</th>
                             <th>Tgl Join</th>
@@ -59,6 +60,13 @@
                                 <td>{{ $value->phone_number }}</td>
                                 <td>{{ $value->address }}</td>
                                 <td>{{ $value->ktp }}</td>
+                                <td>
+                                    @if ($value->link_ktp)
+                                        <a class="badge bg-primary me-1" href="{{ $value->link_ktp }}" target="_blank"><i
+                                        class="mdi mdi-eye-outline me-1 mdi-14px"></i> Lihat KTP</a>
+                                    @endif
+                                    
+                                </td>
                                 <td>@if($value->bank_name) {{ $value->bank_name }} / {{ $value->bank_account_name }} / {{ $value->bank_account_number }} @endif</td>
                                 <td>
                                     @if ($value->status == 1)
@@ -77,7 +85,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="12" class="text-center">Data masih kosong</td>
+                                <td colspan="13" class="text-center">Data masih kosong</td>
                             </tr>
                         @endforelse
                     </tbody>
