@@ -68,6 +68,11 @@ class Deposito extends Model
         return $this->hasOne(Payment::class, 'deposito_id');
     }
 
+    public function profit()
+    {
+        return $this->hasMany(Profit::class, 'deposito_id');
+    }
+
     public function getStatusTextAttribute()
     {
         $status = 'Menunggu Pembayaran';

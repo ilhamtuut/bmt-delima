@@ -84,7 +84,7 @@
                             </div>
                             <div class="card-info">
                                 <h4 class="mb-0">RP{{ number_format($deposito,0,',','.') }}</h4>
-                                <small class="text-muted">Deposito</small>
+                                <small class="text-muted">Total Deposito</small>
                             </div>
                         </div>
                         <div class="d-flex gap-3">
@@ -95,7 +95,7 @@
                             </div>
                             <div class="card-info">
                                 <h4 class="mb-0">RP{{ number_format($withdraw,0,',','.') }}</h4>
-                                <small class="text-muted">Penarikan</small>
+                                <small class="text-muted">Total Penarikan</small>
                             </div>
                         </div>
                         <div class="d-flex gap-3">
@@ -106,7 +106,7 @@
                             </div>
                             <div class="card-info">
                                 <h4 class="mb-0">RP{{ number_format($profit,0,',','.') }}</h4>
-                                <small class="text-muted">Profit</small>
+                                <small class="text-muted">Total Profit</small>
                             </div>
                         </div>
                     </div>

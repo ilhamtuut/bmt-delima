@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth','verified','block-user']], function() {
             Route::post('/create', [DepositoController::class, 'create'])->name('create');
             Route::get('/list', [DepositoController::class, 'list'])->name('list');
             Route::get('/list/komisi', [DepositoController::class, 'list_affilate'])->name('list_affilate');
+            Route::get('/list/profit', [DepositoController::class, 'list_profit'])->name('list_profit');
             Route::get('/action/{type}/{id}', [DepositoController::class, 'action_deposito'])->name('action_deposito');
         });
     });

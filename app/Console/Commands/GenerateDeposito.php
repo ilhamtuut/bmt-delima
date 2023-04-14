@@ -42,34 +42,53 @@ class GenerateDeposito extends Command
      */
     public function handle()
     {
-        $data = Deposito::whereDate('expired_at',date('Y-m-d'))->get();
+        $datenow = date('Y-m-d');
+        $data = Deposito::where('status',1)->get();
         if(count($data) > 0){
             foreach ($data as $key => $value) {
-                $profit = Profit::create([
-                    'user_id' => $value->user_id,
-                    'deposito_id' => $value->id,
-                    'amount' => $value->amount,
-                    'percent' => $value->type->percent,
-                    'profit' => $value->amount * $value->type->percent,
-                    'status'=>1
-                ]);
+                if($datenow < $value->expired_at){
+                    $last_profit = $value->profit()->orderBy('id','desc')->first();
+                    $date_profit = date('Y-m-d', strtotime($value->created_at. ' + 30 days'));
+                    if($last_profit){
+                        $date_profit = date('Y-m-d', strtotime($last_profit->created_at. ' + 30 days'));
+                    }
+                    if($date_profit == $datenow){
+                        $profit_amount = round($value->profit / $value->type->contract,0);
+                        $rest = $value->type->contract - $value->profit()->count();
+                        if($rest == 1){
+                            $profit_amount = $value->profit - $value->profit()->sum('amount');
+                        }
+                        $profit = Profit::create([
+                            'user_id' => $value->user_id,
+                            'deposito_id' => $value->id,
+                            'amount' => $profit_amount,
+                            'percent' => 1,
+                            'profit' => $value->profit()->count() + 1,
+                            'status'=>1
+                        ]);
 
-                Mutation::create([
-                    'trxid' => $profit->trxid,
-                    'user_id' => $profit->user_id,
-                    'note' => 'Pendapatan '.$value->type->name,
-                    'amount' => $profit->profit,
-                    'debit' => $profit->profit,
-                    'kredit' => 0,
-                    'reference_id' => $profit->id,
-                    'reference_type' => Profit::class,
-                    'status' => 1
-                ]);
-                $value->update(['status' => 4]);
+                        Mutation::create([
+                            'trxid' => $profit->trxid,
+                            'user_id' => $profit->user_id,
+                            'note' => 'Pendapatan bulan ke-'.($value->profit()->count() + 1).' '.$value->type->name,
+                            'amount' => $profit->amount,
+                            'debit' => $profit->amount,
+                            'kredit' => 0,
+                            'reference_id' => $profit->id,
+                            'reference_type' => Profit::class,
+                            'status' => 1
+                        ]);
+                        if($rest == 1){
+                            $value->update(['status' => 4]);
+                        }
+                    }
+                }
             }
             LogGenerate::create([
                 'activity' => 'Generate Deposito'
             ]);
+            echo "Done\n"; exit;
         }
+        echo "Not Found\n"; exit;
     }
 }

@@ -151,6 +151,12 @@
                             <div data-i18n="List Deposito">List Deposito</div>
                         </a>
                     </li>
+                    <li class="menu-item {{ isset($active) && $active == 'profit' ? 'active' : '' }}">
+                        <a href="{{ route('deposito.list_profit') }}" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-google-circles-extended"></i>
+                            <div data-i18n="List Penghasilan">List Penghasilan</div>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

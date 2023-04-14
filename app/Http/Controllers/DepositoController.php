@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\User;
+use App\Models\Profit;
 use App\Models\Payment;
 use App\Models\Mutation;
 use App\Models\Deposito;
@@ -320,7 +321,6 @@ class DepositoController extends Controller
 
     public function list_affilate(Request $request)
     {
-
         $search = $request->search;
         $from_date = str_replace('/', '-', $request->from_date);
         $to_date = str_replace('/', '-', $request->to_date);
@@ -357,5 +357,45 @@ class DepositoController extends Controller
             ->whereDate('created_at','<=',$to)
             ->sum('bonus');
         return view('pages.deposito.affilate', compact('history','total'))->with('i', (request()->input('page', 1) - 1) * 20);
+    }
+
+    public function list_profit(Request $request)
+    {
+        $search = $request->search;
+        $from_date = str_replace('/', '-', $request->from_date);
+        $to_date = str_replace('/', '-', $request->to_date);
+        if($from_date && $to_date){
+            $from = date('Y-m-d',strtotime($from_date));
+            $to = date('Y-m-d',strtotime($to_date));
+        }else{
+            $from = date('Y-m-d',strtotime('01/01/2018'));
+            $to = date('Y-m-d');
+            $from_date = '01/01/2018';
+            $to_date = date('d/m/Y');
+        }
+
+        $history = Profit::when($search, function ($query) use ($search){
+                $query->whereHas('user', function ($cari) use ($search){
+                    $cari->where('users.username', 'LIKE', $search.'%')
+                        ->orWhere('users.name', 'LIKE', $search.'%')
+                        ->orWhere('users.account_number', 'LIKE', $search.'%');
+                });
+            })
+            ->whereDate('created_at','>=',$from)
+            ->whereDate('created_at','<=',$to)
+            ->orderBy('id','desc')
+            ->paginate(20);
+
+        $total = Profit::when($search, function ($query) use ($search){
+                $query->whereHas('user', function ($cari) use ($search){
+                    $cari->where('users.username', 'LIKE', $search.'%')
+                        ->orWhere('users.name', 'LIKE', $search.'%')
+                        ->orWhere('users.account_number', 'LIKE', $search.'%');
+                });
+            })
+            ->whereDate('created_at','>=',$from)
+            ->whereDate('created_at','<=',$to)
+            ->sum('amount');
+        return view('pages.deposito.profit', compact('history','total'))->with('i', (request()->input('page', 1) - 1) * 20);
     }
 }
