@@ -75,6 +75,28 @@
                 </ul>
             </li>
 
+            <!-- Affiliasi -->
+            <li class="menu-item d-none {{ isset($page) && $page == 'affilate' ? 'active' : '' }}">
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons mdi mdi-share-all-outline"></i>
+                    <div data-i18n="Affiliasi">Affiliasi</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item {{ isset($active) && $active == 'referral' ? 'active' : '' }}">
+                        <a href="{{ route('users.referral') }}" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-cog-outline"></i>
+                            <div data-i18n="Affiliasi">Affiliasi</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ isset($active) && $active == 'komisi' ? 'active' : '' }}">
+                        <a href="{{ route('deposito.list_affilate') }}" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-credit-card-outline"></i>
+                            <div data-i18n="Komisi Affiliasi">Komisi Affiliasi</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <!-- Settings -->
             <li class="menu-item {{ isset($page) && $page == 'settings' ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -129,13 +151,6 @@
                             <div data-i18n="List Deposito">List Deposito</div>
                         </a>
                     </li>
-
-                    {{-- <li class="menu-item {{ isset($active) && $active == 'komisi' ? 'active' : '' }}">
-                        <a href="{{ route('deposito.list_affilate') }}" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-share-all-outline"></i>
-                            <div data-i18n="Komisi Affiliasi">Komisi Affiliasi</div>
-                        </a>
-                    </li> --}}
                 </ul>
             </li>
 

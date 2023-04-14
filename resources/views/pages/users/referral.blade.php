@@ -1,8 +1,8 @@
-@extends('layouts.app', ['page' => 'users', 'active' => 'referral'])
+@extends('layouts.app', ['page' => 'affilate', 'active' => 'referral'])
 @section('css')
 @endsection
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Users /</span> Affiliasi </h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Beranda /</span> Affiliasi </h4>
 @endsection
 
 @section('content')

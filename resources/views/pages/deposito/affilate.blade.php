@@ -1,6 +1,6 @@
-@extends('layouts.app', ['page' => 'deposito', 'active' => 'komisi'])
+@extends('layouts.app', ['page' => 'affilate', 'active' => 'komisi'])
 @section('title')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Deposito /</span> Komisi Affiliasi</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Beranda /</span> Komisi Affiliasi</h4>
 @endsection
 
 @section('content')
