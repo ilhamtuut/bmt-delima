@@ -32,7 +32,16 @@
                             <div class="swiper-slide pb-3" style="min-height: 245px;">
                                 <h5 class="mb-2">{{ $value->name }}</h5>
                                 <div class="d-flex align-items-center mt-3">
-                                    <img src="{{ asset('assets//img/icons/unicons/wallet-info.png') }}"
+                                    @php
+                                        if ($value->id == 1) {
+                                            $img = asset('assets//img/icons/unicons/wallet-info.png');
+                                        }elseif($value->id == 2) {
+                                            $img = asset('assets//img/icons/unicons/computer.png');
+                                        }else {
+                                            $img = asset('assets//img/icons/unicons/vip2.png');
+                                        }
+                                    @endphp
+                                    <img src="{{ $img }}"
                                         alt="Marketing and sales" width="84" class="rounded" />
                                     <div class="d-flex flex-column w-100 ms-4">
                                         <div class="row d-flex flex-wrap justify-content-between">

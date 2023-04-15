@@ -22,12 +22,12 @@ class AuthController extends Controller
             'password' => 'required|string'
         ]);
 
-        $user = User::where(['username'=> $data['email'], 'status' => 1])->first();
+        $user = User::where(['username'=> $data['username'], 'status' => 1])->first();
 
         if (!$user || !Hash::check($data['password'], $user->password)) {
             return response([
                 'success' => false,
-                'message' => 'incorrect email or password'
+                'message' => 'incorrect username or password'
             ], 422);
         }
 
