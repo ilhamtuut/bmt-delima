@@ -76,7 +76,7 @@
             </li>
 
             <!-- Affiliasi -->
-            <li class="menu-item d-none {{ isset($page) && $page == 'affilate' ? 'active' : '' }}">
+            <li class="menu-item {{ isset($page) && $page == 'affilate' ? 'active' : '' }}">
                 <a href="javascript:void(0)" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons mdi mdi-share-all-outline"></i>
                     <div data-i18n="Affiliasi">Affiliasi</div>

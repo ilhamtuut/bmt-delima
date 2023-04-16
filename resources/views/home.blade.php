@@ -36,7 +36,7 @@
                                         if ($value->id == 1) {
                                             $img = asset('assets//img/icons/unicons/wallet-info.png');
                                         }elseif($value->id == 2) {
-                                            $img = asset('assets//img/icons/unicons/computer.png');
+                                            $img = asset('assets//img/icons/unicons/wallet-info.png');
                                         }else {
                                             $img = asset('assets//img/icons/unicons/vip2.png');
                                         }
