@@ -33,7 +33,8 @@ class HomeController extends Controller
         if($user->hasRole('member')){
             $types = DepositoType::get();
             $deposito = $user->deposito()->whereIn('status',[1,4])->sum('amount');
-            $profit = $user->deposito()->whereIn('status',[1,4])->sum('profit');
+            // $profit = $user->deposito()->whereIn('status',[1,4])->sum('profit');
+            $profit = $user->profit()->sum('amount');
             $withdraw = $user->withdrawal()->where('status',1)->sum('amount');
             return view('home', compact('types','deposito','profit','withdraw'));
         }else{
@@ -42,6 +43,7 @@ class HomeController extends Controller
             })->count();
             $deposito = Deposito::whereIn('status',[1,4])->sum('amount');
             $profit = Deposito::whereIn('status',[1,4])->sum('profit');
+            // $profit = Profit::sum('amount');
             $withdraw = Withdrawal::where('status',1)->sum('amount');
             return view('home', compact('users','deposito','profit','withdraw'));
         }
