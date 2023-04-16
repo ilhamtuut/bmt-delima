@@ -398,4 +398,32 @@ class DepositoController extends Controller
             ->sum('amount');
         return view('pages.deposito.profit', compact('history','total'))->with('i', (request()->input('page', 1) - 1) * 20);
     }
+
+    public function my_profit(Request $request, $deposito_id)
+    {
+        $from_date = str_replace('/', '-', $request->from_date);
+        $to_date = str_replace('/', '-', $request->to_date);
+        if($from_date && $to_date){
+            $from = date('Y-m-d',strtotime($from_date));
+            $to = date('Y-m-d',strtotime($to_date));
+        }else{
+            $from = date('Y-m-d',strtotime('01/01/2018'));
+            $to = date('Y-m-d');
+            $from_date = '01/01/2018';
+            $to_date = date('d/m/Y');
+        }
+
+        $history = Profit::where('user_id',Auth::id())
+            ->where('deposito_id',$deposito_id)
+            ->whereDate('created_at','>=',$from)
+            ->whereDate('created_at','<=',$to)
+            ->paginate(24);
+
+        $total = Profit::where('user_id',Auth::id())
+            ->where('deposito_id',$deposito_id)
+            ->whereDate('created_at','>=',$from)
+            ->whereDate('created_at','<=',$to)
+            ->sum('amount');
+        return view('pages.deposito.my_profit', compact('history','total', 'deposito_id'))->with('i', (request()->input('page', 1) - 1) * 20);
+    }
 }

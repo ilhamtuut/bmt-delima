@@ -55,8 +55,10 @@
                                                         <small class="mb-0 me-2 text-truncate">Profit</small>
                                                         <small class="mb-0 me-2 sales-text-bg bg-label-secondary">{{ $value->percent*100 }}%</small>
                                                     </li>
-                                                    <li class="d-flex align-items-center">
+                                                    <li class="d-flex mb-2 align-items-center">
                                                         <small class="mb-0 me-2 text-truncate">Minimal Deposito</small>
+                                                    </li>
+                                                    <li class="d-flex align-items-center">
                                                         <small class="mb-0 me-2 sales-text-bg bg-label-secondary">RP{{ number_format($value->minimal,0,',','.') }}</small>
                                                     </li>
                                                 </ul>
@@ -65,7 +67,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-3 pt-1">
-                                    <button type="button" class="btn btn-sm btn-primary" onclick="location.href = '{{ route('deposito.index') }}'">Apply</button>
+                                    <button type="button" class="btn btn-sm btn-{{ $value->id == 3 ? 'warning' : 'primary' }}" onclick="location.href = '{{ route('deposito.index') }}'">Apply</button>
                                 </div>
                             </div>
                         @endforeach
@@ -115,7 +117,7 @@
                             </div>
                             <div class="card-info">
                                 <h4 class="mb-0">RP{{ number_format($profit,0,',','.') }}</h4>
-                                <small class="text-muted">Total Profit</small>
+                                <small class="text-muted me-1">Total Profit</small> <a href="{{ route('mutation.index') }}" class="badge bg-warning text-white">Mutasi</a>
                             </div>
                         </div>
                     </div>

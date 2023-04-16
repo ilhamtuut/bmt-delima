@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth','verified','block-user']], function() {
         Route::post('/save', [DepositoController::class, 'save'])->name('save');
         Route::get('/payment/{id}', [DepositoController::class, 'payment'])->name('payment');
         Route::post('confirm/payment/{id}', [DepositoController::class, 'confirm_payment'])->name('confirm_payment');
+        Route::get('/profit/{id}', [DepositoController::class, 'my_profit'])->name('my_profit');
         Route::group(['middleware'=>'permission:administrator'], function() {
             Route::get('/add', [DepositoController::class, 'add'])->name('add');
             Route::post('/create', [DepositoController::class, 'create'])->name('create');

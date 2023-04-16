@@ -20,7 +20,7 @@
                             <div class="row">
                                 @foreach ($deposito as $key => $value)
                                     <div class="col-md mb-md-0 mb-3">
-                                        <div class="form-check custom-option custom-option-basic">
+                                        <div class="form-check custom-option custom-option-basic" style="min-height: 5.378125rem;">
                                             <label class="form-check-label custom-option-content"
                                                 for="deposito-{{ $value->id }}">
                                                 <input name="deposito" class="form-check-input" type="radio"
@@ -28,6 +28,9 @@
                                                     {{ $key == 0 ? 'checked' : '' }} data-percent="{{ $value->percent }}">
                                                 <span class="custom-option-header">
                                                     <span class="h6 mb-0">{{ $value->name }}</span>
+                                                    @if ($value->id == 3)
+                                                        <span style="font-size: large; font-weight:700;" class="text-warning">VIP</span>
+                                                    @endif
                                                 </span>
                                                 <span class="custom-option-body">
                                                     <small class="text-primary">Minimal Rp{{ number_format($value->minimal,0,',','.') }}</small>
@@ -101,6 +104,8 @@
                                     <td>
                                         @if ($value->status == 0)
                                             <a href="{{ route('deposito.payment',$value->id) }}" class="badge bg-primary me-1 cursor-pointer"><i class="mdi mdi-cash-sync me-1"></i>Bayar</a>
+                                        @elseif($value->status == 1 || $value->status == 4)
+                                            <a href="{{ route('deposito.my_profit', $value->id) }}" class="badge bg-primary me-1 cursor-pointer"><i class="mdi mdi-cash-sync me-1"></i>Profit</a>
                                         @else
                                             -
                                         @endif
