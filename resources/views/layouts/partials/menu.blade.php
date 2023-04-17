@@ -104,18 +104,20 @@
                     <div data-i18n="Pengaturan">Pengaturan</div>
                 </a>
                 <ul class="menu-sub">
-                    <li class="menu-item {{ isset($active) && $active == 'sbank' ? 'active' : '' }}">
-                        <a href="{{ route('setting.bank') }}" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-bank"></i>
-                            <div data-i18n="Bank">Bank</div>
-                        </a>
-                    </li>
-                    <li class="menu-item {{ isset($active) && $active == 'bank_account' ? 'active' : '' }}">
-                        <a href="{{ route('setting.bank_account') }}" class="menu-link">
-                            <i class="menu-icon tf-icons mdi mdi-bank-plus"></i>
-                            <div data-i18n="Akun Bank Deposito">Akun Bank Deposito</div>
-                        </a>
-                    </li>
+                    @role(['super_admin'])
+                        <li class="menu-item {{ isset($active) && $active == 'sbank' ? 'active' : '' }}">
+                            <a href="{{ route('setting.bank') }}" class="menu-link">
+                                <i class="menu-icon tf-icons mdi mdi-bank"></i>
+                                <div data-i18n="Bank">Bank</div>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ isset($active) && $active == 'bank_account' ? 'active' : '' }}">
+                            <a href="{{ route('setting.bank_account') }}" class="menu-link">
+                                <i class="menu-icon tf-icons mdi mdi-bank-plus"></i>
+                                <div data-i18n="Akun Bank Deposito">Akun Bank Deposito</div>
+                            </a>
+                        </li>
+                    @endrole
                     <li class="menu-item {{ isset($active) && $active == 'sdeposito' ? 'active' : '' }}">
                         <a href="{{ route('setting.deposito') }}" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-credit-card-outline"></i>

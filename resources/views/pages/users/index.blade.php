@@ -87,7 +87,13 @@
                                 <select id="role" name="role" class="select2 form-select">
                                     <option value="">Pilih Role</option>
                                     @foreach ($roles as $role)
-                                        <option value="{{$role->id}}">{{$role->display_name}}</option>
+                                        @if (Auth::user()->hasRole('admin'))
+                                            @if ($role->id == 3)
+                                                <option value="{{$role->id}}">{{$role->display_name}}</option>
+                                            @endif
+                                        @else
+                                            <option value="{{$role->id}}">{{$role->display_name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 <label for="role">Role</label>

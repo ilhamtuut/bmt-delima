@@ -91,14 +91,14 @@ Route::group(['middleware' => ['auth','verified','block-user']], function() {
         Route::get('/settings/affiliasi/{type}/{id}', [UsersController::class, 'set_referral'])->name('set.referral');
     });
 
-    Route::group(['prefix' => 'setting', 'as' => 'setting.','middleware'=>'permission:administrator'], function() {
-        Route::get('/withdrawal', [SettingController::class, 'index'])->name('index');
-        Route::post('/withdrawal/update', [SettingController::class, 'update'])->name('update');
-        Route::get('/bank', [SettingController::class, 'bank'])->name('bank');
-        Route::post('/bank/store', [SettingController::class, 'store_bank'])->name('store_bank');
-        Route::get('/bank_account', [SettingController::class, 'bank_account'])->name('bank_account');
-        Route::post('/bank_account/store', [SettingController::class, 'store_bank_account'])->name('store_bank_account');
-        Route::get('/deposito', [SettingController::class, 'deposito'])->name('deposito');
-        Route::post('/deposito/store', [SettingController::class, 'store_deposito'])->name('store_deposito');
+    Route::group(['prefix' => 'setting', 'as' => 'setting.'], function() {
+        Route::get('/withdrawal', [SettingController::class, 'index'])->name('index')->middleware('permission:administrator');
+        Route::post('/withdrawal/update', [SettingController::class, 'update'])->name('update')->middleware('permission:administrator');
+        Route::get('/bank', [SettingController::class, 'bank'])->name('bank')->middleware('role:super_admin');
+        Route::post('/bank/store', [SettingController::class, 'store_bank'])->name('store_bank')->middleware('role:super_admin');
+        Route::get('/bank_account', [SettingController::class, 'bank_account'])->name('bank_account')->middleware('role:super_admin');
+        Route::post('/bank_account/store', [SettingController::class, 'store_bank_account'])->name('store_bank_account')->middleware('role:super_admin');
+        Route::get('/deposito', [SettingController::class, 'deposito'])->name('deposito')->middleware('permission:administrator');
+        Route::post('/deposito/store', [SettingController::class, 'store_deposito'])->name('store_deposito')->middleware('permission:administrator');
     });
 });
