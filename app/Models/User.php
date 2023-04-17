@@ -39,6 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'status',
         'session_id',
         'password',
+        'email_verified_at'
     ];
 
     /**
