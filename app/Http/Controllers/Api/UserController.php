@@ -71,4 +71,22 @@ class UserController extends Controller
         ];
         return response($res, 200);
     }
+
+    public function overview(Request $request)
+    {
+        $user = $request->user();
+        $balance = $user->saldo();
+        $deposito = $user->deposito()->whereIn('status',[1,4])->sum('amount');
+        $profit = $user->deposito()->whereIn('status',[1,4])->sum('profit');
+        $withdraw = $user->withdrawal()->where('status',1)->sum('amount');
+        return response([
+            'success' => true,
+            'data' => [
+                'balance' => $balance,
+                'deposito' => $deposito,
+                'profit' => $profit,
+                'withdraw' => $withdraw
+            ]
+        ], 200);
+    }
 }

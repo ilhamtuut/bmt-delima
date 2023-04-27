@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::get('/profile', [UserController::class, 'profile']);
+    Route::get('/overview', [UserController::class, 'overview']);
     Route::post('/update/password', [UserController::class, 'updatePassword']);
     Route::post('/update/bank', [UserController::class, 'updateBank']);
 
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/deposito/send', [DepositoController::class, 'send']);
     Route::post('/deposito/confirm/payment/{id}', [DepositoController::class, 'confirm_payment']);
     Route::get('/deposito/history', [DepositoController::class, 'history']);
+    Route::get('/deposito/profit/{id}', [DepositoController::class, 'my_profit']);
     Route::post('/withdrawal/send', [WithdrawalController::class, 'send']);
     Route::get('/withdrawal/history', [WithdrawalController::class, 'history']);
     Route::post('/transfer/send', [TransferController::class, 'send']);

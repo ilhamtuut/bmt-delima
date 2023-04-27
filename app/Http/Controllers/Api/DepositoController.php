@@ -7,6 +7,7 @@ use App\Models\BankDeposit;
 use App\Models\DepositoType;
 use App\Models\Deposito;
 use App\Models\Payment;
+use App\Models\Profit;
 use App\Rules\Base64Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -97,6 +98,39 @@ class DepositoController extends Controller
         $history = $user->deposito()->with('payment')->orderBy('id','desc')->paginate(20);
         return response([
             'success' => true,
+            'data' => $history
+        ], 200);
+    }
+
+    public function my_profit(Request $request, $deposito_id)
+    {
+        $from_date = str_replace('/', '-', $request->from_date);
+        $to_date = str_replace('/', '-', $request->to_date);
+        if($from_date && $to_date){
+            $from = date('Y-m-d',strtotime($from_date));
+            $to = date('Y-m-d',strtotime($to_date));
+        }else{
+            $from = date('Y-m-d',strtotime('01/01/2018'));
+            $to = date('Y-m-d');
+            $from_date = '01/01/2018';
+            $to_date = date('d/m/Y');
+        }
+
+        $user = $request->user();
+        $history = Profit::where('user_id',$user->id)
+            ->where('deposito_id',$deposito_id)
+            ->whereDate('created_at','>=',$from)
+            ->whereDate('created_at','<=',$to)
+            ->paginate(30);
+
+        $total = Profit::where('user_id',$user->id)
+            ->where('deposito_id',$deposito_id)
+            ->whereDate('created_at','>=',$from)
+            ->whereDate('created_at','<=',$to)
+            ->sum('amount');
+        return response([
+            'success' => true,
+            'total' => $total,
             'data' => $history
         ], 200);
     }
