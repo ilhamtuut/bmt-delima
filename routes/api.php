@@ -25,6 +25,13 @@ use App\Http\Controllers\Api\{
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/reset/password', [AuthController::class, 'sendResetPassword']);
+Route::get('/app/version', function(){
+    $app = \App\Models\AppVersion::first();
+    return [
+        'versi' => $app->version,
+        'message' => 'Silahkan upgrade ke versi '.$app->version
+    ];
+});
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // Resend link to verify email 
     Route::post('/email/verify/resend', [AuthController::class, 'resendEmailVerification'])->middleware(['throttle:6,1']);
