@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\DepositoType;
 
 class CustomDepositSeeder extends Seeder
 {
