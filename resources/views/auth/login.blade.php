@@ -40,11 +40,11 @@
             <button class="btn btn-primary d-grid w-100">Masuk</button>
         </form>
 
-        <p class="text-center mt-2">
+        {{-- <p class="text-center mt-2">
             <span> Pengguna baru?</span>
             <a href="{{ route('register') }}">
                 <span>Buat akun</span>
             </a>
-        </p>
+        </p> --}}
     </div>
 @endsection

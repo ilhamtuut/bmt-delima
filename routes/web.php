@@ -28,7 +28,7 @@ Route::get('/verification/otp', function () {
     return view('auth.otp');
 });
 Route::get('/referral/{code}', [App\Http\Controllers\Auth\RegisterController::class, 'referal'])->name('referal');
-Auth::routes(['verify' => true]);
+Auth::routes(['register' => false,'verify' => true]);
 Route::group(['middleware' => ['auth','verified','block-user']], function() {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::group(['prefix' => 'profile', 'as' => 'profile.'], function() {
