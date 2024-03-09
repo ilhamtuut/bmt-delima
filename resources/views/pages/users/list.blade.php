@@ -54,7 +54,7 @@
                             <tr>
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $value->account_number }}</td>
-                                <td>{{ $value->name }}</td>
+                                <td>{{ $value->name.' '.$value->last_name }}</td>
                                 <td>{{ $value->username }}</td>
                                 <td>{{ $value->email }}</td>
                                 <td>{{ $value->phone_number }}</td>
@@ -65,7 +65,7 @@
                                         <a class="badge bg-primary me-1" href="{{ $value->link_ktp }}" target="_blank"><i
                                         class="mdi mdi-eye-outline me-1 mdi-14px"></i> Lihat KTP</a>
                                     @endif
-                                    
+
                                 </td>
                                 <td>@if($value->bank_name) {{ $value->bank_name }} / {{ $value->bank_account_name }} / {{ $value->bank_account_number }} @endif</td>
                                 <td>

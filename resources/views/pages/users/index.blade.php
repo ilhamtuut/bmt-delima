@@ -19,7 +19,13 @@
                         <div class="col-md-6">
                             <div class="form-floating form-floating-outline">
                                 <input class="form-control" type="text" id="name" name="name" autofocus />
-                                <label for="name">Nama Lengkap</label>
+                                <label for="name">Nama Depan</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating form-floating-outline">
+                                <input class="form-control" type="text" id="last_name" name="last_name" autofocus />
+                                <label for="name">Nama Belakang</label>
                             </div>
                         </div>
                         <div class="col-md-6">

@@ -59,6 +59,7 @@ class UsersController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_num', 'min:6', 'max:10', 'unique:users,username'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone_number' => ['required', 'string', 'max:15'],
@@ -81,6 +82,7 @@ class UsersController extends Controller
         $phone_number = ltrim($phone_number, '0');
         $user = User::create([
             'name' => $data['name'],
+            'last_name' => $data['last_name'],
             'username' => strtolower($data['username']),
             'email' => $data['email'],
             'phone_number' => $phone_number,
@@ -112,6 +114,7 @@ class UsersController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'alpha_num', 'min:6', 'max:10', 'unique:users,username,'.$id],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
             'phone_number' => ['required', 'string', 'max:15'],
@@ -133,6 +136,7 @@ class UsersController extends Controller
         $phone_number = ltrim($phone_number, '0');
         $dataUpdate = [
             'name' => $data['name'],
+            'last_name' => $data['last_name'],
             'username' => strtolower($data['username']),
             'email' => $data['email'],
             'phone_number' => $phone_number,
