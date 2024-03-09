@@ -65,12 +65,12 @@
                                 <td>{{ $value->created_at }}</td>
                                 <td>{{ $value->user->account_number }} - {{ $value->user->name }}</td>
                                 <td>{{ $value->trxid }}</td>
-                                <td>{{ $value->type->name }}</td>
+                                <td>{{ $value->type->name }} {{ $value->type_deposito == 'custom' ? $value->contract.' Bulan '.($value->percent*100).'%' : '' }}</td>
                                 <td>{{ $value->expired_at ? $value->expired_at : '-' }}</td>
                                 <td><span class="badge bg-label-{{ $value->label }} me-1">{{ $value->status_text }}</span>
                                 </td>
                                 <td class="text-end">{{ number_format($value->amount, 0, ',', '.') }}</td>
-                                <td class="text-end">{{ number_format($value->amount * $value->type->percent, 0, ',', '.') }}</td>
+                                <td class="text-end">{{ $value->type_deposito == 'custom' ? number_format($value->amount * $value->percent, 0, ',', '.') : number_format($value->amount * $value->type->percent, 0, ',', '.') }}</td>
                                 <td>
                                     @if ($value->status == 2)
                                         <span onclick="confirmAction('{{ route('deposito.action_deposito',['accept',$value->id]) }}','Menerima')"
@@ -79,6 +79,10 @@
                                         <span onclick="confirmAction('{{ route('deposito.action_deposito',['reject',$value->id]) }}','Membatalkan')"
                                             class="badge bg-danger cursor-pointer"><i
                                                 class="mdi mdi-cash-sync me-1 mdi-14px"></i> Reject</span>
+                                    @else
+                                        @if (!$value->payment)
+                                            -
+                                        @endif
                                     @endif
                                     @if ($value->payment)
                                     <span class="badge bg-info cursor-pointer showModal"

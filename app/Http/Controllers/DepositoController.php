@@ -91,7 +91,7 @@ class DepositoController extends Controller
         $request->merge([
             'nominal' => str_replace('.','',$request->nominal)
         ]);
-        
+
         $this->validate($request, [
             'nominal' => 'required|numeric',
             'file' => ['required', 'mimes:jpeg,png,jpg', 'max:2048'],
@@ -161,7 +161,7 @@ class DepositoController extends Controller
         $request->session()->flash('success', 'Berhasil '.$text.' pembayaran deposito.');
         return response()->json(['success' => true ]);
     }
-    
+
     public function add(Request $request)
     {
         $deposito = DepositoType::get();
@@ -179,7 +179,7 @@ class DepositoController extends Controller
         $request->merge([
             'nominal' => str_replace('.','',$request->nominal)
         ]);
-        
+
         $this->validate($request, [
             'account_number' => 'required|exists:users,id',
             'deposito' => 'required|exists:deposito_types,id',
@@ -425,5 +425,57 @@ class DepositoController extends Controller
             ->whereDate('created_at','<=',$to)
             ->sum('amount');
         return view('pages.deposito.my_profit', compact('history','total', 'deposito_id'))->with('i', (request()->input('page', 1) - 1) * 20);
+    }
+
+    public function custom(Request $request)
+    {
+        $users = User::select('id','account_number','name')
+            ->where('status',1)
+            ->whereNotNull('email_verified_at')
+            ->whereHas('roles', function ($query) {
+                $query->where('roles.name', 'member');
+            })->get();
+        return view('pages.deposito.custom', compact('users'));
+    }
+
+    public function createCustom(Request $request)
+    {
+        $request->merge([
+            'nominal' => str_replace('.','',$request->nominal)
+        ]);
+        $this->validate($request, [
+            'account_number' => 'required|exists:users,id',
+            'contract' => 'required|numeric',
+            'percent' => 'required|numeric',
+            'nominal' => 'required|numeric',
+        ]);
+        $paket = DepositoType::where('name','Custom Deposito')->first();
+        $expired_at = date('Y-m-d', strtotime(date("Y-m-d"). ' + '.$request->contract.' month'));
+        $deposito = Deposito::create([
+            'user_id' => $request->account_number,
+            'deposito_type_id' => $paket->id,
+            'amount' => $request->nominal,
+            'profit' => $request->nominal * ($request->percent/100),
+            'code' => 0,
+            'status' => 1,
+            'type_deposito' => 'custom',
+            'contract' => $request->contract,
+            'percent' => $request->percent/100,
+            'expired_at' => $expired_at
+        ]);
+
+        Mutation::create([
+            'trxid' => $deposito->trxid,
+            'user_id' => $request->account_number,
+            'note' => $paket->name.' '.$request->contract.' Bulan '.$request->percent.'%',
+            'amount' => $request->nominal,
+            'debit' => $request->nominal,
+            'kredit' => 0,
+            'reference_id' => $deposito->id,
+            'reference_type' => Deposito::class,
+            'status' => 1
+        ]);
+        $request->session()->flash('success', 'Berhasil membuat deposito baru');
+        return redirect()->back();
     }
 }

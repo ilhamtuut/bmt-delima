@@ -53,8 +53,15 @@ class GenerateDeposito extends Command
                         $date_profit = date('Y-m-d', strtotime($last_profit->created_at. ' + 30 days'));
                     }
                     if($date_profit == $datenow){
-                        $profit_amount = round($value->profit / $value->type->contract,0);
-                        $rest = $value->type->contract - $value->profit()->count();
+                        if($value->type_deposito == 'custom'){
+                            $note = $value->type->name.' '.$value->contract.' Bulan '.($value->percent*100).'%';
+                            $profit_amount = round($value->profit / $value->contract,0);
+                            $rest = $value->contract - $value->profit()->count();
+                        }else{
+                            $note = $value->type->name;
+                            $profit_amount = round($value->profit / $value->type->contract,0);
+                            $rest = $value->type->contract - $value->profit()->count();
+                        }
                         if($rest == 1){
                             $profit_amount = $value->profit - $value->profit()->sum('amount');
                         }
@@ -70,7 +77,7 @@ class GenerateDeposito extends Command
                         Mutation::create([
                             'trxid' => $profit->trxid,
                             'user_id' => $profit->user_id,
-                            'note' => 'Pendapatan bulan ke-'.($value->profit()->count() + 1).' '.$value->type->name,
+                            'note' => 'Pendapatan bulan ke-'.($value->profit()->count() + 1).' '.$note,
                             'amount' => $profit->amount,
                             'debit' => $profit->amount,
                             'kredit' => 0,

@@ -147,6 +147,12 @@
                             <div data-i18n="Buka Deposito">Buka Deposito</div>
                         </a>
                     </li>
+                    <li class="menu-item {{ isset($active) && $active == 'customdeposito' ? 'active' : '' }}">
+                        <a href="{{ route('deposito.custom') }}" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-credit-card-outline"></i>
+                            <div data-i18n="Custom Deposito">Custom Deposito</div>
+                        </a>
+                    </li>
                     <li class="menu-item {{ isset($active) && $active == 'listdeposito' ? 'active' : '' }}">
                         <a href="{{ route('deposito.list') }}" class="menu-link">
                             <i class="menu-icon tf-icons mdi mdi-google-circles-extended"></i>

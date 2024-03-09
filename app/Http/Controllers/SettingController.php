@@ -34,7 +34,7 @@ class SettingController extends Controller
         $request->session()->flash('success', 'Successfully updated data');
         return redirect()->back();
     }
-    
+
     public function bank(Request $request)
     {
         $data = Bank::get();
@@ -56,7 +56,7 @@ class SettingController extends Controller
         $request->session()->flash('success', 'Successfully save changes data');
         return redirect()->back();
     }
-    
+
     public function bank_account(Request $request)
     {
         $banks = Bank::get();
@@ -84,7 +84,7 @@ class SettingController extends Controller
 
     public function deposito(Request $request)
     {
-        $data = DepositoType::get();
+        $data = DepositoType::where('status',1)->get();
         return view('pages.settings.deposito', compact('data'));
     }
 

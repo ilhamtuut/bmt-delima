@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth','verified','block-user']], function() {
             Route::get('/list/komisi', [DepositoController::class, 'list_affilate'])->name('list_affilate');
             Route::get('/list/profit', [DepositoController::class, 'list_profit'])->name('list_profit');
             Route::get('/action/{type}/{id}', [DepositoController::class, 'action_deposito'])->name('action_deposito');
+            Route::get('/custom', [DepositoController::class, 'custom'])->name('custom');
+            Route::post('/custom', [DepositoController::class, 'createCustom'])->name('createCustom');
         });
     });
 

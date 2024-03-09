@@ -16,6 +16,9 @@ class Deposito extends Model
         'profit',
         'code',
         'status',
+        'type_deposito',
+        'contract',
+        'percent',
         'expired_at'
     ];
 
