@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="col-md-12">
+    <div class="col-md-12 d-none">
         <div class="card mb-4">
             <h4 class="card-header">Deposito</h4>
             <!-- Account -->
@@ -73,7 +73,7 @@
             <!-- /Account -->
         </div>
     </div>
-    @if (count($history) > 0)
+    
         <div class="col-md-12">
             <div class="card">
                 <h3 class="card-header">Riwayat</h3>
@@ -121,7 +121,6 @@
                 </div>
             </div>
         </div>
-    @endif
 @endsection
 
 @section('customjs')
