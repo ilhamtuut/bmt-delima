@@ -10,7 +10,7 @@
                             <div class="card-body">
                                 <h4 class="card-title pb-xl-2">Selamat Datang <strong> {{ Auth::user()->name }}!</strong>🎉</h4>
                                 <p>Investasikan dana kamu sekarang, untuk menghasilkan tambahan pemasukan Anda.</p>
-                                <a href="{{ route('deposito.index') }}" class="btn btn-primary waves-effect waves-light">
+                                <a href="{{ route('deposito.index') }}" class="btn btn-primary waves-effect waves-light d-none">
                                     <i class="menu-icon tf-icons mdi mdi-credit-card-outline"></i> Deposito Sekarang</a>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <!-- Marketing & Sales-->
-            <div class="col-md-12 col-lg-4">
+            <div class="col-md-12 col-lg-4 d-none">
                 <div class="swiper-container swiper-container-horizontal swiper swiper-sales" id="swiper-marketing-sales">
                     <div class="swiper-wrapper">
                         @foreach ($types as $value)
