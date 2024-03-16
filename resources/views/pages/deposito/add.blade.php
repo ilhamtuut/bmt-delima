@@ -20,7 +20,7 @@
                                 <select id="account_number" name="account_number" class="select2 form-select">
                                     <option value="">Pilih Nomor Rekening</option>
                                     @foreach ($users as $value)
-                                        <option value="{{ $value->id }}" data-name="{{ $value->name }}">{{ $value->account_number }}</option>
+                                        <option value="{{ $value->id }}" data-name="{{ $value->name.' '.$value->last_name }}">{{ $value->account_number.' - '.$value->username.' - '.$value->name.' '.$value->last_name }}</option>
                                     @endforeach
                                 </select>
                                 <label for="account_number">Nomor Rekening</label>
