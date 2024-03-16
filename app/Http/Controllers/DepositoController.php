@@ -165,7 +165,7 @@ class DepositoController extends Controller
     public function add(Request $request)
     {
         $deposito = DepositoType::get();
-        $users = User::select('id','account_number','name')
+        $users = User::select('id','account_number','name','last_name','username')
             ->where('status',1)
             ->whereNotNull('email_verified_at')
             ->whereHas('roles', function ($query) {
@@ -429,7 +429,7 @@ class DepositoController extends Controller
 
     public function custom(Request $request)
     {
-        $users = User::select('id','account_number','name')
+        $users = User::select('id','account_number','name','last_name','username')
             ->where('status',1)
             ->whereNotNull('email_verified_at')
             ->whereHas('roles', function ($query) {
